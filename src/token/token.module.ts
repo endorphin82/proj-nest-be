@@ -8,5 +8,6 @@ import { TokenSchema } from './schemas/user-token.schema'
     MongooseModule.forFeature([{ name: 'Token', schema: TokenSchema }]),
   ],
   providers: [TokenService],
+  exports: [TokenService],
 })
 export class TokenModule {}
