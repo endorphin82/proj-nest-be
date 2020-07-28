@@ -10,4 +10,5 @@ import { TokenSchema } from './schemas/user-token.schema'
   providers: [TokenService],
   exports: [TokenService],
 })
-export class TokenModule {}
+export class TokenModule {
+}
