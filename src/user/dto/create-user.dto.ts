@@ -1,16 +1,52 @@
-import { IAddress } from '../interfaces/address.interface'
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
+import { IsEmail, IsNotEmpty, IsOptional, IsString, Matches } from 'class-validator'
+import { CreateAddressDto } from './create-address.dto'
 
 export class CreateUserDto {
+  @ApiProperty()
+  @IsEmail()
   readonly email: string
+
   readonly avatar: string
   readonly avatarId: string
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   readonly lastName: string
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   readonly firstName: string
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   readonly gender: string
-  readonly address: IAddress
+
+  @IsOptional()
+  @ApiPropertyOptional()
+  readonly address: CreateAddressDto
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   readonly profession: string
   readonly searchField: string
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
   readonly phone: string
   readonly roles: Array<string>
+
+  @IsString()
+  @IsNotEmpty()
+  @Matches(
+    /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/,
+    { message: 'Weak password' },
+  )
+  @ApiProperty()
   readonly password: string
 }
