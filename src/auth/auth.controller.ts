@@ -8,7 +8,7 @@ import {
 } from '@nestjs/common'
 import { CreateUserDto } from '../user/dto/create-user.dto'
 import { AuthService } from './auth.service'
-import { ApiTags } from '@nestjs/swagger'
+import { ApiTags, ApiBearerAuth } from '@nestjs/swagger'
 import { ConfirmAccountDto } from './dto/confirm-account.dto'
 
 @ApiTags('auth')
