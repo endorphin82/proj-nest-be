@@ -58,7 +58,6 @@ export class AuthService {
     throw new BadRequestException('Invalid credentials')
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   async signUser(user: IUser, withStatusCheck: boolean = true): Promise<string> {
     if (withStatusCheck && (user.status !== statusEnum.active)) {
       throw new MethodNotAllowedException()
