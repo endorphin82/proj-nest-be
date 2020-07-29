@@ -13,7 +13,8 @@ import { ConfigService } from '@nestjs/config'
 import { MailService } from '../mail/mail.service'
 import { roleEnum } from '../user/enums/role.enum'
 import { IUser } from '../user/interfaces/user.interface'
-import moment = require('moment');
+// import moment = require('moment');
+import * as moment from 'moment'
 import { statusEnum } from '../user/enums/status.enum'
 
 @Injectable()
@@ -36,7 +37,8 @@ export class AuthService {
     return true
   }
 
-  signIn(email, password) {}
+  signIn(email, password) {
+  }
 
   async confirm(token: string): Promise<IUser> {
     const data = await this.verifyToken(token)
