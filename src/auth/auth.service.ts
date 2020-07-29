@@ -13,7 +13,7 @@ import { ConfigService } from '@nestjs/config'
 import { MailService } from '../mail/mail.service'
 import { roleEnum } from '../user/enums/role.enum'
 import { IUser } from '../user/interfaces/user.interface'
-import moment from 'moment'
+import moment = require('moment');
 import { statusEnum } from '../user/enums/status.enum'
 
 @Injectable()
