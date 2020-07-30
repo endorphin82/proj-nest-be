@@ -15,12 +15,15 @@ export class MailService {
   }
 
   send(data: IMailGunData): Promise<Mailgun.messages.SendResponse> {
+    console.log('send data', data)
     return new Promise((res, rej) => {
       this.mg.messages().send(data, function(error, body) {
         if (error) {
           rej(error)
+          console.log('error', error)
         }
         res(body)
+        console.log('body', body)
       })
     })
   }

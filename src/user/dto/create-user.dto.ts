@@ -33,13 +33,13 @@ export class CreateUserDto {
 
   @ApiProperty()
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   readonly profession: string
   readonly searchField: string
 
   @ApiProperty()
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   readonly phone: string
   readonly roles: Array<string>
 
