@@ -24,6 +24,7 @@ import { ITokenPayload } from './interfaces/token-payload.interface'
 import { userSensitiveFieldsEnum } from '../user/enums/protected-fields.enum'
 import * as _ from 'lodash'
 import { ForgotPasswordDto } from './dto/forgot-password.dto'
+import { ChangeMyPasswordDto } from './dto/change-my-password.dto'
 
 @Injectable()
 export class AuthService {
@@ -82,10 +83,23 @@ export class AuthService {
   }
 
   async changePassword(userId: string, changePasswordDto: ChangePasswordDto): Promise<boolean> {
+    console.log('asda')
     const password = await this.userService.hashPassword(changePasswordDto.password)
-
-    await this.userService.update(userId, { password })
+    await this.userService.update(userId, password)
     await this.tokenService.deleteAll(userId)
+    return true
+  }
+
+  async changeMyPass(changeMyPasswordDto: ChangeMyPasswordDto): Promise<boolean> {
+    console.log('asda')
+    const data = await this.verifyToken(changeMyPasswordDto.token)
+    console.log(data)
+    const password = await this.userService.hashPassword(changeMyPasswordDto.password)
+    console.log(data._id, password)
+
+    await this.userService.update(data._id, { password })
+
+    await this.tokenService.deleteAll(data._id)
     return true
   }
 
@@ -147,6 +161,7 @@ export class AuthService {
       throw new BadRequestException('Invalid email')
     }
     const token = await this.signUser(user)
+    console.log('user, token:', user, token)
     const forgotLink = `${this.clientAppUrl}/auth/forgotPassword?token=${token}`
 
     await this.mailService.send({

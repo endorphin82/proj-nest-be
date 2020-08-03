@@ -17,6 +17,7 @@ import { ForgotPasswordDto } from './dto/forgot-password.dto'
 import { AuthGuard } from '@nestjs/passport'
 import { IUser } from '../user/interfaces/user.interface'
 import { GetUser } from '../components/decorators/get-user.decorator'
+import { ChangeMyPasswordDto } from './dto/change-my-password.dto'
 
 @ApiTags('auth')
 @Controller('auth')
@@ -43,6 +44,11 @@ export class AuthController {
   @Post('/forgotPassword')
   async forgotPassword(@Body(new ValidationPipe()) forgotPasswordDto: ForgotPasswordDto): Promise<void> {
     return this.authService.forgotPassword(forgotPasswordDto)
+  }
+
+  @Post('/changemypass')
+  async changeMyPass(@Body(new ValidationPipe()) changeMyPasswordDto: ChangeMyPasswordDto): Promise<boolean> {
+    return this.authService.changeMyPass(changeMyPasswordDto)
   }
 
   @Patch('/changePassword')

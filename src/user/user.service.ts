@@ -34,6 +34,7 @@ export class UserService {
   }
 
   async update(id: string, payload: Partial<IUser>) {
-    return await this.userModel.updateOne({ id }, payload)
+    console.log('payload', id,  payload)
+    return await this.userModel.updateOne({ _id: id }, payload )
   }
 }
