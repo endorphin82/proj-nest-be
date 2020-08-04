@@ -83,7 +83,6 @@ export class AuthService {
   }
 
   async changePassword(userId: string, changePasswordDto: ChangePasswordDto): Promise<boolean> {
-    console.log('asda')
     const password = await this.userService.hashPassword(changePasswordDto.password)
     await this.userService.update(userId, password)
     await this.tokenService.deleteAll(userId)
@@ -91,16 +90,16 @@ export class AuthService {
   }
 
   async changeMyPass(changeMyPasswordDto: ChangeMyPasswordDto): Promise<boolean> {
-    console.log('asda')
-    const data = await this.verifyToken(changeMyPasswordDto.token)
-    console.log(data)
-    const password = await this.userService.hashPassword(changeMyPasswordDto.password)
-    console.log(data._id, password)
-
-    await this.userService.update(data._id, { password })
-
-    await this.tokenService.deleteAll(data._id)
-    return true
+    try {
+      const data = await this.verifyToken(changeMyPasswordDto.token)
+      const password = await this.userService.hashPassword(changeMyPasswordDto.password)
+      await this.userService.update(data._id, { password })
+      await this.tokenService.deleteAll(data._id)
+      return true
+    } catch (e) {
+      console.log(e)
+      return false
+    }
   }
 
   async confirm(token: string): Promise<IUser> {
