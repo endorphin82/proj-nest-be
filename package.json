@@ -31,7 +31,7 @@
     "@nestjs/platform-express": "^7.0.0",
     "@nestjs/swagger": "^4.5.12",
     "bcrypt": "^5.0.0",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
     "joi": "^17.1.1",
     "lodash": "^4.17.19",
