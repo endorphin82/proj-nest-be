@@ -40,6 +40,12 @@ export class AuthService {
     this.clientAppUrl = this.configService.get<string>('FE_APP_URL')
   }
 
+  async signUpGoogle(createUserDto: CreateUserDto): Promise<boolean> {
+    const user = await this.userService.create(createUserDto, [roleEnum.user])
+    await this.sendConfirmation(user)
+    return true
+  }
+
   async signUp(createUserDto: CreateUserDto): Promise<boolean> {
     const user = await this.userService.create(createUserDto, [roleEnum.user])
     await this.sendConfirmation(user)

@@ -25,6 +25,11 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {
   }
 
+  @Get('/auth/google')
+  async signUpGoogle(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<boolean> {
+    return this.authService.signUpGoogle(createUserDto)
+  }
+
   @Post('/signUp')
   async signUp(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<boolean> {
     return this.authService.signUp(createUserDto)
