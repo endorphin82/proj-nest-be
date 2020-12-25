@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
 import { UserModule } from './user/user.module'
 import { AuthModule } from './auth/auth.module'
 import { MongooseModule } from '@nestjs/mongoose'
@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { configModule } from './configure.root'
 import { TokenModule } from './token/token.module'
 import { MailModule } from './mail/mail.module'
+import { LoggerMiddleware } from './common/logger.middleware'
 
 @Module({
   imports: [
@@ -20,5 +21,11 @@ import { MailModule } from './mail/mail.module'
     MailModule,
   ],
 })
-export class AppModule {
+
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes('*');
+  }
 }
