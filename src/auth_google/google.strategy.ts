@@ -13,7 +13,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     super({
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SECRET,
-      callbackURL: 'https://endorphin.fun/auth/confirm',
+      callbackURL: 'https://endorphin.fun/auth/google/redirect',
       scope: ['email', 'profile'],
     })
   }

@@ -1,22 +1,26 @@
-import { Injectable } from '@nestjs/common'
+import { Module } from '@nestjs/common'
+import { UserModule } from '../user/user.module'
+import { configModule } from '../configure.root'
+import { JwtModule } from '@nestjs/jwt'
+import { AuthGoogleService } from './auth_google.service'
+import { GoogleStrategy } from './google.strategy'
+import { AuthGoogleController } from './auth_google.controller'
 import { UserService } from '../user/user.service'
-import { CreateUserDto } from '../user/dto/create-user.dto'
-import { roleEnum } from '../user/enums/role.enum'
-import { TokenService } from '../token/token.service'
 
-@Injectable()
-export class AuthGoogleService {
 
-  constructor(
-    private readonly userService: UserService,
-    private readonly tokenService: TokenService,
-  ) {
+@Module({
+  imports: [
+    UserModule,
 
-  }
+    configModule,
 
-  async signGoogle(createUserDto: CreateUserDto): Promise<boolean> {
-
-    const user = await this.userService.create(createUserDto, [roleEnum.user])
-    return true
-  }
+    JwtModule.register({
+      secret: process.env.GOOGLE_SECRET,
+    }),
+  ],
+  providers: [AuthGoogleService, GoogleStrategy],
+  controllers: [AuthGoogleController],
+  exports: [AuthGoogleService]
+})
+export class AuthGoogleModule {
 }
