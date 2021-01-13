@@ -24,6 +24,11 @@ import { ChangeMyPasswordDto } from './dto/change-my-password.dto'
 export class AuthController {
   constructor(private readonly authService: AuthService) {
   }
+  @Get('/google/callback')
+  async getTokenAfterGoogleSignIn(@Req() req) {
+    console.log(req.user)
+    return req.user
+  }
 
   @Post('/signUp')
   async signUp(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<boolean> {

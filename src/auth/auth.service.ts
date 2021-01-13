@@ -40,6 +40,13 @@ export class AuthService {
     this.clientAppUrl = this.configService.get<string>('FE_APP_URL')
   }
 
+  async googleValidate(profile: any) {
+    const service = 'google'
+    const serviceId = profile.id
+    const email = profile.emails[0].value
+    return await this.socialValidate(service, serviceId, email)
+  }
+
   async signUp(createUserDto: CreateUserDto): Promise<boolean> {
     const user = await this.userService.create(createUserDto, [roleEnum.user])
     await this.sendConfirmation(user)
@@ -125,7 +132,7 @@ export class AuthService {
       subject: 'Verify User',
       html: `
                 <h3>Hello ${user.firstName}!</h3>
-                <p>Please use this <a href="${confirmLink}">link</a> to confirm your account.</p>
+                <p>Please use this <a href='${confirmLink}'>link</a> to confirm your account.</p>
             `,
     })
   }
@@ -169,8 +176,37 @@ export class AuthService {
       subject: 'Forgot Password',
       html: `
                 <h3>Hello ${user.firstName}!</h3>
-                <p>Please use this <a href="${forgotLink}">link</a> to reset your password.</p>
+                <p>Please use this <a href='${forgotLink}'>link</a> to reset your password.</p>
             `,
     })
+  }
+
+  private async socialValidate(service, serviceId, email) {
+    const socialAuth = await SocialAuth.findOne({ where: { serviceId } })
+    console.log(socialAuth)
+    const result = {
+      type: 'signIn',
+      email,
+      service,
+    }
+
+    let user
+    if (socialAuth) { // Sign In
+
+      console.log('sign_in')
+      user = await socialAuth.user
+    } else { // Sign On
+      console.log('sign_on')
+      user = await User.findOne({ where: { email } })
+      if (!user) {
+        user = new User(email)
+        await user.save()
+      }
+      const newSocialAuth = new SocialAuth(user.id, service, serviceId)
+      await newSocialAuth.save()
+      result.type = 'signOn'
+    }
+    result['token'] = this.getToken(user)
+    return result
   }
 }
