@@ -8,12 +8,14 @@ import { PassportModule } from '@nestjs/passport'
 import { UserModule } from '../user/user.module'
 import { TokenModule } from '../token/token.module'
 import { MailModule } from '../mail/mail.module'
+import { SocialAuthModule } from '../social_auth/social_auth.module'
 import { GoogleStrategy } from './google.strategy'
 
 @Module({
   imports: [
     UserModule,
     TokenModule,
+    SocialAuthModule,
     configModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
@@ -22,7 +24,7 @@ import { GoogleStrategy } from './google.strategy'
     }),
     MailModule,
   ],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, GoogleStrategy],
   controllers: [AuthController],
 })
 

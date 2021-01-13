@@ -3,7 +3,7 @@ import {
   Controller,
   Get, Patch,
   Post,
-  Query, UseGuards,
+  Query, Req, UseGuards,
   ValidationPipe,
 } from '@nestjs/common'
 import { CreateUserDto } from '../user/dto/create-user.dto'
@@ -24,6 +24,13 @@ import { ChangeMyPasswordDto } from './dto/change-my-password.dto'
 export class AuthController {
   constructor(private readonly authService: AuthService) {
   }
+
+  @UseGuards(AuthGuard('google'))
+  @Get('/google')
+  async googleAuth(@Req() req) {
+  }
+
+  @UseGuards(AuthGuard('google'))
   @Get('/google/callback')
   async getTokenAfterGoogleSignIn(@Req() req) {
     console.log(req.user)
