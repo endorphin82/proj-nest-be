@@ -54,6 +54,17 @@ export class SocialAuthService {
     result['token'] = this.getToken(user)
     return result
   }
+
+  getToken(user: User): string {
+    const payload = {
+      email: user.email,
+      userId: user.id
+    }
+    const token = this.jwtService.sign(payload)
+    return token
+  }
+
+
   async create(createSocialAuthDto: CreateSocialAuthDto): Promise<ISocialAuth> {
     const socialAuth = new this.socialAuthModel(createSocialAuthDto)
     return await socialAuth.save()
