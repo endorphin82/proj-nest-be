@@ -44,7 +44,8 @@ export class AuthService {
     const service = 'google'
     const serviceId = profile.id
     const email = profile.emails[0].value
-    return await this.socialValidate(service, serviceId, email)
+    // return await this.socialValidate(service, serviceId, email)
+    return email
   }
 
   async signUp(createUserDto: CreateUserDto): Promise<boolean> {
@@ -181,32 +182,32 @@ export class AuthService {
     })
   }
 
-  private async socialValidate(service, serviceId, email) {
-    const socialAuth = await SocialAuth.findOne({ where: { serviceId } })
-    console.log(socialAuth)
-    const result = {
-      type: 'signIn',
-      email,
-      service,
-    }
-
-    let user
-    if (socialAuth) { // Sign In
-
-      console.log('sign_in')
-      user = await socialAuth.user
-    } else { // Sign On
-      console.log('sign_on')
-      user = await User.findOne({ where: { email } })
-      if (!user) {
-        user = new User(email)
-        await user.save()
-      }
-      const newSocialAuth = new SocialAuth(user.id, service, serviceId)
-      await newSocialAuth.save()
-      result.type = 'signOn'
-    }
-    result['token'] = this.getToken(user)
-    return result
-  }
+  // private async socialValidate(service, serviceId, email) {
+  //   const socialAuth = await SocialAuth.findOne({ where: { serviceId } })
+  //   console.log(socialAuth)
+  //   const result = {
+  //     type: 'signIn',
+  //     email,
+  //     service,
+  //   }
+  //
+  //   let user
+  //   if (socialAuth) { // Sign In
+  //
+  //     console.log('sign_in')
+  //     user = await socialAuth.user
+  //   } else { // Sign On
+  //     console.log('sign_on')
+  //     user = await User.findOne({ where: { email } })
+  //     if (!user) {
+  //       user = new User(email)
+  //       await user.save()
+  //     }
+  //     const newSocialAuth = new SocialAuth(user.id, service, serviceId)
+  //     await newSocialAuth.save()
+  //     result.type = 'signOn'
+  //   }
+  //   result['token'] = this.getToken(user)
+  //   return result
+  // }
 }
