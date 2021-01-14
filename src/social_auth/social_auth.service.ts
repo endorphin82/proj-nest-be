@@ -6,7 +6,6 @@ import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
 import { UserService } from '../user/user.service'
 import { JwtService } from '@nestjs/jwt'
 import { IUser } from '../user/interfaces/user.interface'
-import { roleEnum } from '../user/enums/role.enum'
 
 @Injectable()
 export class SocialAuthService {
