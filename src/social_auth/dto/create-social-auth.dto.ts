@@ -12,5 +12,5 @@ export class CreateSocialAuthDto {
   uId: mongoose.Types.ObjectId
 
   @IsDateString()
-  expireAt: string
+  expireAt?: string
 }

@@ -27,12 +27,13 @@ export class AuthController {
 
   @UseGuards(AuthGuard('google'))
   @Get('/google')
-  async googleAuth(@Req() req) {
+  async googleAuth(req) {
+    return req
   }
 
   @UseGuards(AuthGuard('google'))
   @Get('/google/callback')
-  async getTokenAfterGoogleSignIn(@Req() req) {
+  async getTokenAfterGoogleSignIn(req) {
     console.log(req.user)
     return req.user
   }

@@ -4,13 +4,15 @@ import { Model } from 'mongoose'
 import { ISocialAuth } from './interfaces/social-auth.interface'
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
 import { UserService } from '../user/user.service'
-import { CreateUserTokenDto } from '../token/dto/create-user-token.dto'
-import { IUserToken } from '../token/interfaces/user-token.interface'
+import { JwtService } from '@nestjs/jwt'
+import { IUser } from '../user/interfaces/user.interface'
+import { roleEnum } from '../user/enums/role.enum'
 
 @Injectable()
 export class SocialAuthService {
   constructor(
     private readonly userService: UserService,
+    private jwtService: JwtService,
     @InjectModel('SocialAuth') private readonly socialAuthModel: Model<ISocialAuth>) {
   }
 
@@ -44,29 +46,24 @@ export class SocialAuthService {
       console.log('sign_on')
       user = await this.userService.findByEmail(email)
       // if (!user) {
-      //   user = this.userService.create({ email})
-      //   await user.save()
+      //   await this.userService.create({ email })
       // }
-      const newSocialAuth = new SocialAuth(user.id, service, serviceId)
-      await newSocialAuth.save()
+      await this.create({ uId: user.id, service, serviceId })
+      // const newSocialAuth = new SocialAuth(user.id, service, serviceId)
+
       result.type = 'signOn'
     }
     result['token'] = this.getToken(user)
     return result
   }
 
-  getToken(user: User): string {
+  getToken(user: IUser): string {
     const payload = {
       email: user.email,
-      userId: user.id
+      uId: user.id,
     }
     const token = this.jwtService.sign(payload)
     return token
   }
 
-
-  async create(createSocialAuthDto: CreateSocialAuthDto): Promise<ISocialAuth> {
-    const socialAuth = new this.socialAuthModel(createSocialAuthDto)
-    return await socialAuth.save()
-  }
 }
