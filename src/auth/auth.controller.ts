@@ -28,19 +28,6 @@ export class AuthController {
   ) {
   }
 
-  @UseGuards(AuthGuard('google'))
-  @Get('/google')
-  async googleAuth(req) {
-    return req
-  }
-
-  @UseGuards(AuthGuard('google'))
-  @Get('/google/callback')
-  async getTokenAfterGoogleSignIn(req) {
-    console.log(req.user)
-    return req.user
-  }
-
   @Post('/signUp')
   async signUp(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<boolean> {
     return this.authService.signUp(createUserDto)
