@@ -25,9 +25,6 @@ import { userSensitiveFieldsEnum } from '../user/enums/protected-fields.enum'
 import * as _ from 'lodash'
 import { ForgotPasswordDto } from './dto/forgot-password.dto'
 import { ChangeMyPasswordDto } from './dto/change-my-password.dto'
-import { InjectModel } from '@nestjs/mongoose'
-import { Model } from 'mongoose'
-import { ISocialAuth } from './interfaces/social-auth.interface'
 
 @Injectable()
 export class AuthService {
@@ -176,6 +173,4 @@ export class AuthService {
             `,
     })
   }
-
-
 }
