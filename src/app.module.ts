@@ -1,12 +1,12 @@
-import { Module } from '@nestjs/common'
+import { MiddlewareConsumer, Module } from '@nestjs/common'
 import { UserModule } from './user/user.module'
 import { AuthModule } from './auth/auth.module'
 import { MongooseModule } from '@nestjs/mongoose'
-
 import { configModule } from './configure.root'
 import { TokenModule } from './token/token.module'
 import { MailModule } from './mail/mail.module'
 import { SocialAuthModule } from './social_auth/social_auth.module'
+import { LoggerMiddleware } from './common/logger.middleware'
 
 @Module({
   imports: [
@@ -22,5 +22,11 @@ import { SocialAuthModule } from './social_auth/social_auth.module'
     MailModule,
   ],
 })
+
 export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes('*')
+  }
 }
