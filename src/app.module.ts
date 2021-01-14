@@ -6,11 +6,13 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { configModule } from './configure.root'
 import { TokenModule } from './token/token.module'
 import { MailModule } from './mail/mail.module'
+import { SocialAuthModule } from './social_auth/social_auth.module'
 
 @Module({
   imports: [
     UserModule,
     AuthModule,
+    SocialAuthModule,
     configModule,
     MongooseModule.forRoot(process.env.MONGODB_WRITE_CONNECTION_STRING, {
       useNewUrlParser: true,

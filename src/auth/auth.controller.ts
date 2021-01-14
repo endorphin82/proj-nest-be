@@ -18,11 +18,14 @@ import { AuthGuard } from '@nestjs/passport'
 import { IUser } from '../user/interfaces/user.interface'
 import { GetUser } from '../components/decorators/get-user.decorator'
 import { ChangeMyPasswordDto } from './dto/change-my-password.dto'
+import { SocialAuthService } from '../social_auth/social_auth.service'
 
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {
+  constructor(
+    private readonly authService: AuthService,
+  ) {
   }
 
   @UseGuards(AuthGuard('google'))

@@ -10,6 +10,7 @@ import { TokenModule } from '../token/token.module'
 import { MailModule } from '../mail/mail.module'
 import { SocialAuthModule } from '../social_auth/social_auth.module'
 import { GoogleStrategy } from './google.strategy'
+import { SocialAuthService } from '../social_auth/social_auth.service'
 
 @Module({
   imports: [
@@ -24,7 +25,7 @@ import { GoogleStrategy } from './google.strategy'
     }),
     MailModule,
   ],
-  providers: [AuthService, JwtStrategy, GoogleStrategy],
+  providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
 })
 
