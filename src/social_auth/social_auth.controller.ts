@@ -1,6 +1,5 @@
 import { ApiTags } from '@nestjs/swagger'
 import { BadRequestException, Controller, Get, Post, Query, UseGuards, ValidationPipe } from '@nestjs/common'
-import { SocialAuthService } from './social_auth.service'
 import { AuthGuard } from '@nestjs/passport'
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
 
@@ -8,7 +7,7 @@ import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
 @Controller('aut')
 export class SocialAuthController {
   constructor(
-    private  socialAuthService: SocialAuthService,
+    // private  socialAuthService: SocialAuthService,
   ) {
   }
 
