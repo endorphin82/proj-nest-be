@@ -15,7 +15,7 @@ export class SocialAuthController {
   @UseGuards(AuthGuard('google'))
   @Post('/google')
   // @Get('/auth/google')
-  async googleAuth(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto): Promise<CreateSocialAuthDto> {
+  async googleAuth(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto) {
     // console.log('!!!googleAuth', createSocialAuthDto)
     throw new BadRequestException('googleAuth')
     // return await createSocialAuthDto
@@ -31,7 +31,7 @@ export class SocialAuthController {
   @UseGuards(AuthGuard('google'))
   @Post('/google/callback')
   // @Get('/auth/google/callback')
-  async getTokenAfterGoogleSignIn(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto): Promise<CreateSocialAuthDto> {
+  async getTokenAfterGoogleSignIn(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto) {
     throw new BadRequestException('getTokenAfterGoogleSignIn')
 
     // console.log('!!!getTokenAfterGoogleSignIn', createSocialAuthDto)
