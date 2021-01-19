@@ -10,10 +10,10 @@ export class CreateSocialAuthDto {
   @ApiProperty()
   @IsString()
   service: string
-
-  @ApiProperty()
-  @IsString()
-  uId: mongoose.Types.ObjectId
+  //
+  // @ApiProperty()
+  // @IsString()
+  // uId: mongoose.Types.ObjectId
 
   @ApiProperty()
   @IsDateString()
