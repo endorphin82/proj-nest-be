@@ -3,14 +3,12 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { ISocialAuth } from './interfaces/social-auth.interface'
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
-import { UserService } from '../user/user.service'
 import { JwtService } from '@nestjs/jwt'
 import { IUser } from '../user/interfaces/user.interface'
 
 @Injectable()
 export class SocialAuthService {
   constructor(
-    private readonly userService: UserService,
     private jwtService: JwtService,
     @InjectModel('SocialAuth') private readonly socialAuthModel: Model<ISocialAuth>) {
   }
@@ -40,10 +38,10 @@ export class SocialAuthService {
     if (socialAuth) { // Sign In
 
       console.log('sign_in')
-      user = await this.userService.find(socialAuth.uId)
+      // user = await this.userService.find(socialAuth.uId)
     } else { // Sign On
       console.log('sign_on')
-      user = await this.userService.findByEmail(email)
+      // user = await this.userService.findByEmail(email)
       // if (!user) {
       //   await this.userService.create({ email })
       // }

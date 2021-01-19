@@ -3,7 +3,6 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { SocialAuthSchema } from './schemas/social-auth.schema'
 import { SocialAuthService } from './social_auth.service'
 import { SocialAuthController } from './social_auth.controller'
-import { JwtModule } from '@nestjs/jwt'
 import { GoogleStrategy } from '../auth/google.strategy'
 import { configModule } from '../configure.root'
 
