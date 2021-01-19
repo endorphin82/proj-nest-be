@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose'
 import { Model } from 'mongoose'
 import { ISocialAuth } from './interfaces/social-auth.interface'
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
-import { JwtService } from '@nestjs/jwt'
 import { IUser } from '../user/interfaces/user.interface'
 
 @Injectable()
