@@ -15,9 +15,9 @@ export class SocialAuthController {
   @UseGuards(AuthGuard('google'))
   @Post('/google')
   // @Get('/auth/google')
-  async googleAuth(@Query(new ValidationPipe()) req: CreateSocialAuthDto): Promise<CreateSocialAuthDto> {
-    console.log('!!!googleAuth', req)
-    return req
+  async googleAuth(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto): Promise<CreateSocialAuthDto> {
+    console.log('!!!googleAuth', createSocialAuthDto)
+    return createSocialAuthDto
   }
 
   // @UseGuards(AuthGuard('google'))
@@ -30,8 +30,8 @@ export class SocialAuthController {
   @UseGuards(AuthGuard('google'))
   @Post('/google/callback')
   // @Get('/auth/google/callback')
-  async getTokenAfterGoogleSignIn(@Query(new ValidationPipe()) req: CreateSocialAuthDto): Promise<CreateSocialAuthDto> {
-    console.log('!!!getTokenAfterGoogleSignIn', req)
-    return req
+  async getTokenAfterGoogleSignIn(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto): Promise<CreateSocialAuthDto> {
+    console.log('!!!getTokenAfterGoogleSignIn', createSocialAuthDto)
+    return createSocialAuthDto
   }
 }
