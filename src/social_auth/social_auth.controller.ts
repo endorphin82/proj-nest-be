@@ -3,7 +3,7 @@ import { BadRequestException, Controller, Get, Post, Query, ValidationPipe } fro
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
 
 @ApiTags('social')
-@Controller('aut')
+@Controller('auth')
 export class SocialAuthController {
   constructor(
     // private  socialAuthService: SocialAuthService,
