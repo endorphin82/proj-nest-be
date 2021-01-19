@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get, Patch,
@@ -30,8 +31,8 @@ export class AuthController {
 
   @Post('/signUp')
   async signUp(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<boolean> {
-    console.log('signUp')
-    return this.authService.signUp(createUserDto)
+    throw new BadRequestException('signUp')
+    // return this.authService.signUp(createUserDto)
   }
 
   @Get('/confirm')
@@ -42,7 +43,7 @@ export class AuthController {
 
   @Post('/signIn')
   async signIn(@Body(new ValidationPipe()) signInDto: SignInDto): Promise<IReadableUser> {
-    console.log('signIn')
+    throw new BadRequestException('signIn')
     return await this.authService.signIn(signInDto)
   }
 
