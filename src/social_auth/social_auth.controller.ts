@@ -12,7 +12,7 @@ export class SocialAuthController {
   ) {
   }
   @UseGuards(AuthGuard('google'))
-  @Post('/auth/google')
+  @Post('/google')
   // @Get('/auth/google')
   async googleAuth(@Query(new ValidationPipe()) req: CreateSocialAuthDto) {
     console.log('!!!googleAuth', req)
@@ -27,7 +27,7 @@ export class SocialAuthController {
   // }
 
   @UseGuards(AuthGuard('google'))
-  @Post('/auth/google/callback')
+  @Post('/google/callback')
   // @Get('/auth/google/callback')
   async getTokenAfterGoogleSignIn(@Query(new ValidationPipe()) req: CreateSocialAuthDto) {
     console.log('!!!getTokenAfterGoogleSignIn', req.uId)
