@@ -1,6 +1,5 @@
 import { ApiTags } from '@nestjs/swagger'
-import { BadRequestException, Controller, Get, Post, Query, UseGuards, ValidationPipe } from '@nestjs/common'
-import { AuthGuard } from '@nestjs/passport'
+import { BadRequestException, Controller, Get, Post, Query, ValidationPipe } from '@nestjs/common'
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
 
 @ApiTags('social')
@@ -11,7 +10,7 @@ export class SocialAuthController {
   ) {
   }
 
-  @UseGuards(AuthGuard('google'))
+  // @UseGuards(AuthGuard('google'))
   @Post('/google')
   // @Get('/auth/google')
   async googleAuth(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto) {
@@ -27,7 +26,7 @@ export class SocialAuthController {
   //   return req.uId
   // }
 
-  @UseGuards(AuthGuard('google'))
+  // @UseGuards(AuthGuard('google'))
   @Post('/google/callback')
   // @Get('/auth/google/callback')
   async getTokenAfterGoogleSignIn(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto) {
