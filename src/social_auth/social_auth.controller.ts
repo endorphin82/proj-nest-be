@@ -5,18 +5,18 @@ import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
 @ApiTags('social')
 @Controller('auth')
 export class SocialAuthController {
-  constructor(
-    // private  socialAuthService: SocialAuthService,
-  ) {
-  }
+  // constructor(
+  //   // private  socialAuthService: SocialAuthService,
+  // ) {
+  // }
 
   // @UseGuards(AuthGuard('google'))
   @Post('/google')
   // @Get('/auth/google')
   async googleAuth(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto) {
     console.log('!!!googleAuth', createSocialAuthDto)
-    throw new BadRequestException('googleAuth')
-    // return await createSocialAuthDto
+    // throw new BadRequestException('googleAuth')
+    return await createSocialAuthDto
   }
 
   // @UseGuards(AuthGuard('google'))
@@ -31,7 +31,7 @@ export class SocialAuthController {
   // @Get('/auth/google/callback')
   async getTokenAfterGoogleSignIn(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto) {
     console.log('!!!getTokenAfterGoogleSignIn', createSocialAuthDto)
-    throw new BadRequestException('getTokenAfterGoogleSignIn')
-    // return await createSocialAuthDto
+    // throw new BadRequestException('getTokenAfterGoogleSignIn')
+    return await createSocialAuthDto
   }
 }
