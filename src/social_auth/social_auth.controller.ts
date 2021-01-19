@@ -30,7 +30,7 @@ export class SocialAuthController {
   @Post('/google/callback')
   // @Get('/auth/google/callback')
   async getTokenAfterGoogleSignIn(@Query(new ValidationPipe()) req: CreateSocialAuthDto) {
-    console.log('!!!getTokenAfterGoogleSignIn', req.uId)
-    return req.uId
+    console.log('!!!getTokenAfterGoogleSignIn', req)
+    return req
   }
 }

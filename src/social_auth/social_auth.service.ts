@@ -47,7 +47,8 @@ export class SocialAuthService {
       // if (!user) {
       //   await this.userService.create({ email })
       // }
-      await this.create({ uId: user.id, service, serviceId })
+      // await this.create({ uId: user.id, service, serviceId })
+      await this.create({ service, serviceId })
       // const newSocialAuth = new SocialAuth(user.id, service, serviceId)
 
       result.type = 'signOn'
