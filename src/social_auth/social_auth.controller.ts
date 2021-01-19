@@ -5,7 +5,7 @@ import { AuthGuard } from '@nestjs/passport'
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
 
 @ApiTags('social')
-@Controller('')
+@Controller('auth')
 export class SocialAuthController {
   constructor(
     private  socialAuthService: SocialAuthService,
