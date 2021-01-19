@@ -16,7 +16,6 @@ import { SocialAuthService } from '../social_auth/social_auth.service'
   imports: [
     UserModule,
     TokenModule,
-    SocialAuthModule,
     configModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
@@ -29,4 +28,5 @@ import { SocialAuthService } from '../social_auth/social_auth.service'
   controllers: [AuthController],
 })
 
-export class AuthModule {}
+export class AuthModule {
+}
