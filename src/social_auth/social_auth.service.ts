@@ -9,7 +9,7 @@ import { IUser } from '../user/interfaces/user.interface'
 @Injectable()
 export class SocialAuthService {
   constructor(
-    private jwtService: JwtService,
+    // private jwtService: JwtService,
     @InjectModel('SocialAuth') private readonly socialAuthModel: Model<ISocialAuth>) {
   }
 
@@ -60,8 +60,9 @@ export class SocialAuthService {
       email: user.email,
       uId: user.id,
     }
-    const token = this.jwtService.sign(payload)
-    return token
+    // const token = this.jwtService.sign(payload)
+    // return token
+    return "asdas"
   }
 
 }
