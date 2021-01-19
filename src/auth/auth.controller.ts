@@ -30,6 +30,7 @@ export class AuthController {
 
   @Post('/signUp')
   async signUp(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<boolean> {
+    console.log('signUp')
     return this.authService.signUp(createUserDto)
   }
 
@@ -41,6 +42,7 @@ export class AuthController {
 
   @Post('/signIn')
   async signIn(@Body(new ValidationPipe()) signInDto: SignInDto): Promise<IReadableUser> {
+    console.log('signIn')
     return await this.authService.signIn(signInDto)
   }
 
