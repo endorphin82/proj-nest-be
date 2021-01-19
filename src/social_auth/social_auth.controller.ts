@@ -1,5 +1,5 @@
 import { ApiTags } from '@nestjs/swagger'
-import { Controller, Get, Post, Query, UseGuards, ValidationPipe } from '@nestjs/common'
+import { BadRequestException, Controller, Get, Post, Query, UseGuards, ValidationPipe } from '@nestjs/common'
 import { SocialAuthService } from './social_auth.service'
 import { AuthGuard } from '@nestjs/passport'
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
@@ -16,8 +16,9 @@ export class SocialAuthController {
   @Post('/google')
   // @Get('/auth/google')
   async googleAuth(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto): Promise<CreateSocialAuthDto> {
-    console.log('!!!googleAuth', createSocialAuthDto)
-    return await createSocialAuthDto
+    // console.log('!!!googleAuth', createSocialAuthDto)
+    throw new BadRequestException('googleAuth')
+    // return await createSocialAuthDto
   }
 
   // @UseGuards(AuthGuard('google'))
@@ -31,7 +32,9 @@ export class SocialAuthController {
   @Post('/google/callback')
   // @Get('/auth/google/callback')
   async getTokenAfterGoogleSignIn(@Query(new ValidationPipe()) createSocialAuthDto: CreateSocialAuthDto): Promise<CreateSocialAuthDto> {
-    console.log('!!!getTokenAfterGoogleSignIn', createSocialAuthDto)
-    return await createSocialAuthDto
+    throw new BadRequestException('getTokenAfterGoogleSignIn')
+
+    // console.log('!!!getTokenAfterGoogleSignIn', createSocialAuthDto)
+    // return await createSocialAuthDto
   }
 }
