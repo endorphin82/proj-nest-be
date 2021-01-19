@@ -22,7 +22,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   }
 
   async validate(accessToken: string, refreshToken: string, profile: any, done: VerifyCallback): Promise<any> {
-    console.log(accessToken, refreshToken, profile)
+    console.log("GoogleStrategy validate", accessToken, refreshToken, profile)
     const result = await this.socialAuthService.googleValidate(profile)
 
     try {
