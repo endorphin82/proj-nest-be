@@ -32,6 +32,7 @@ export class AuthController {
   @Post('/signUp')
   async signUp(@Body(new ValidationPipe()) createUserDto: CreateUserDto): Promise<boolean> {
     throw new BadRequestException('signUp')
+    console.log('signUp')
     // return this.authService.signUp(createUserDto)
   }
 
@@ -44,6 +45,7 @@ export class AuthController {
   @Post('/signIn')
   async signIn(@Body(new ValidationPipe()) signInDto: SignInDto): Promise<IReadableUser> {
     throw new BadRequestException('signIn')
+    console.log('signIn')
     // return await this.authService.signIn(signInDto)
   }
 
