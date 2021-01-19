@@ -44,7 +44,7 @@ export class AuthController {
   @Post('/signIn')
   async signIn(@Body(new ValidationPipe()) signInDto: SignInDto): Promise<IReadableUser> {
     throw new BadRequestException('signIn')
-    return await this.authService.signIn(signInDto)
+    // return await this.authService.signIn(signInDto)
   }
 
   @Post('/forgotPassword')
