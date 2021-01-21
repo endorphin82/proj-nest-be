@@ -42,7 +42,7 @@ export class SocialAuthController {
           "alg": "RS256",
           "kty": "RSA",
           "n": "0zNdxOgV5VIpoeAfj8TMEGRBFg-gaZWz94ePR1yxTKzScHakH4F4wcMEyL0vNE-yW_u4pOl9E-hAalPa2tFv4fCVNMMkmKwcf0gm9wNFWXGakVQ8wER4iUg33MyUGOWj2RGX1zlZxCdFoZRtshLx8xcpL3F5Hlh6m8MqIAowWtusTf5TtYMXFlPaWLQgRXvoOlLZ-muzEuutsZRu-agdOptnUiAZ74e8BgaKN8KNEZ2SqP6vE4w16mgGHQjEPUKz9exxcsnbLru6hZdTDvXbX9IduabyvHy8vQRZsqlE9lTiOOOC9jwh27TXsD05HAXmNYiR6voekzEvfS88vnot2Q==",
-          "kid": "aea1b1f42807a8cc136a03a3c16d29db8296daf0"
+          "kid": "eea1b1f42807a8cc136a03a3c16d29db8296daf0"
         }
       ]
     };
