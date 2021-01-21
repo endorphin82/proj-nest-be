@@ -1,7 +1,8 @@
 import { ApiTags } from '@nestjs/swagger'
 import { BadRequestException, Controller, Get, Post, Query, ValidationPipe } from '@nestjs/common'
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
-import { jws } from "jws-jwk"
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+var jws = require('jws-jwk');
 
 @ApiTags('social')
 @Controller('auth')
