@@ -1,7 +1,7 @@
 import { ApiTags } from '@nestjs/swagger'
 import { BadRequestException, Controller, Get, Post, Query, ValidationPipe } from '@nestjs/common'
 import { CreateSocialAuthDto } from './dto/create-social-auth.dto'
-import jws from "jws-jwk"
+import { jws } from "jws-jwk"
 
 @ApiTags('social')
 @Controller('auth')
