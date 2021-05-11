@@ -34,7 +34,7 @@
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "joi": "^17.1.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "mailgun-js": "^0.22.0",
     "moment": "^2.27.0",
     "mongoose": "^5.9.25",
